@@ -264,3 +264,268 @@ for(var i=0;i<5;i++)addR(0);
 </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#0f172a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Ibuchacha Bill">
+<title>IBUCHACHA KIRANA STORE</title>
+<link rel="manifest" href="manifest.json">
+<style>
+*{box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#f1f5f9;margin:0;padding:8px;color:#0f172a}
+.bar{max-width:840px;margin:0 auto 10px;background:#0f172a;color:#fff;padding:10px;border-radius:10px;position:sticky;top:4px;z-index:99;display:flex;flex-wrap:wrap;gap:6px;justify-content:space-between}
+button{border:none;padding:8px 10px;border-radius:6px;font-size:12px;font-weight:bold;cursor:pointer;color:#fff;background:#334155;touch-action:manipulation}
+.mic{background:#ef4444}.mic.on{background:#16a34a}
+.auto-btn{background:#475569}.auto-btn.on{background:#0284c7;box-shadow:0 0 0 2px #38bdf8}
+.add{background:#10b981}.new{background:#3b82f6}.prt{background:#f59e0b;color:#000}
+select.lng{padding:7px;border-radius:6px;background:#1e293b;color:#fff;border:1px solid #334155;font-weight:bold}
+.st{width:100%;background:#1e293b;color:#fde047;font-size:12px;padding:6px;border-radius:6px}
+.card{max-width:840px;margin:0 auto;background:#fff;border-radius:12px;border:1.5px solid #0f172a;padding:14px}
+.hd{text-align:center;border-bottom:2px solid #0f172a;padding-bottom:8px;margin-bottom:10px}
+.hd h1{margin:0;font-size:21px;letter-spacing:0.5px}
+.hd p{margin:3px 0 0;font-size:12.5px;color:#1e293b;font-weight:bold;line-height:1.4}
+.meta{display:grid;grid-template-columns:1fr 1fr 2.4fr;gap:6px;background:#f8fafc;padding:8px;border-radius:8px;border:1px solid #cbd5e1;margin-bottom:10px}
+.fld{display:flex;flex-direction:column;gap:2px}
+.fld label{font-size:10.5px;font-weight:bold;color:#475569}
+.fld input{width:100%;padding:5px 7px;border:1px solid #cbd5e1;border-radius:4px;font-size:13.5px;font-weight:bold;color:#b91c1c}
+.addr-row{grid-column:1 / -1}
+.vf:focus,.vf.act{background:#fef2f2!important;border-color:#ef4444!important;outline:none}
+table{width:100%;border-collapse:collapse;table-layout:fixed}
+th{background:#0f172a;color:#fff;font-size:12px;padding:7px 3px;border:1px solid #334155}
+td{padding:2px 3px;border:1px solid #cbd5e1;font-size:14px;line-height:1.1}
+td input{width:100%;padding:3px 4px;border:1px solid transparent;border-radius:3px;font-size:15px;font-weight:bold;color:#b91c1c;background:transparent}
+.qb{display:flex;gap:2px;align-items:center}
+.qb input{width:50%;text-align:right;padding:3px 2px}
+.us{width:50%;padding:3px 1px;border:1px solid #cbd5e1;border-radius:4px;font-weight:bold;font-size:12px;background:#fff}
+.c{text-align:center}.r{text-align:right}
+.amt{font-weight:bold;color:#b91c1c;text-align:right;padding-right:5px;font-size:15px}
+.del{background:#fee2e2;color:#dc2626;padding:1px 4px;border-radius:3px;margin-left:2px;font-size:10px}
+.btm{width:100%;margin-top:8px;padding:9px;background:#10b981;font-size:13px}
+tfoot td{background:#f8fafc;padding:5px 6px;font-size:14px;font-weight:bold;border:1px solid #cbd5e1}
+.gst-inp{width:65px;text-align:right;padding:3px 5px;border:1px solid #94a3b8;border-radius:4px;font-weight:bold;color:#b91c1c;font-size:14px}
+.tot-row td{background:#f1f5f9;border-top:2px solid #0f172a;font-size:15px}
+.tot{color:#b91c1c;font-size:17px;text-align:right}
+.words-box{border:1px solid #cbd5e1;border-top:none;padding:6px 8px;font-size:12.5px;background:#fff}
+.words-box b{color:#b91c1c}
+.inv-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;border:1px solid #cbd5e1;border-top:none;padding:8px;font-size:11.5px;line-height:1.35}
+.decl{max-width:62%}
+.sign{text-align:right;min-width:190px;font-weight:bold}
+.sign-space{height:34px}
+.comp-gen{text-align:center;font-size:11px;color:#475569;margin-top:6px;font-weight:bold}
+@media(max-width:600px){
+  .meta{grid-template-columns:1fr 1fr}.pbox{grid-column:span 2}
+  th{font-size:10.5px}td input,.amt{font-size:13px}.us{font-size:11px}
+  .inv-foot{flex-direction:column;align-items:stretch}.decl{max-width:100%}.sign{text-align:right}
+}
+@media print{
+  body{background:#fff;padding:0}.bar,.del,.btm{display:none!important}
+  .card{border:1.5px solid #000;border-radius:0;padding:10px;max-width:100%}
+  .meta{background:#fff;border:1px solid #000;border-radius:0;grid-template-columns:1fr 1fr 2.4fr}.pbox{grid-column:auto}
+  .fld input,td input,.gst-inp{border:none;background:transparent;padding:1px 2px}
+  th{background:#e2e8f0!important;color:#000!important;border:1px solid #000;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  td,tfoot td,.words-box,.inv-foot{border:1px solid #000}
+  .words-box,.inv-foot{border-top:none}
+  .us{border:none;appearance:none;-webkit-appearance:none;background:transparent}
+  @page{margin:8mm}
+}
+</style>
+</head>
+<body>
+<div class="bar">
+  <div>
+    <button type="button" id="mBtn" class="mic" onclick="tV()">🎤 Start Voice</button>
+    <button type="button" id="autoBtn" class="auto-btn on" onclick="tAuto()">⚡ Auto-Move: ON</button>
+    <select id="vL" class="lng" onchange="if(on)rec.stop()"><option value="gu-IN" selected>ગુજરાતી</option><option value="hi-IN">हिन्दी</option><option value="en-IN">English</option></select>
+    <button type="button" onclick="mv(-1)">⏮ Back</button>
+    <button type="button" onclick="mv(1)">⏭ Next</button>
+  </div>
+  <div>
+    <button type="button" class="add" onclick="addR(1)">+ Add Item</button>
+    <button type="button" class="new" onclick="nB()">New Bill</button>
+    <button type="button" class="prt" onclick="window.print()">🖨 Print</button>
+  </div>
+  <div class="st" id="st">⚡ Fast Auto-Move ON — બોલો: "નંબર 1" → "ચોખા" → "5 કિલો" → "50 રૂપિયા" → "ટોટલ"</div>
+</div>
+
+<div class="card">
+  <div class="hd">
+    <h1>IBUCHACHA KIRANA STORE</h1>
+    <p>Opp. Ronak Fry, Khamasa, Ahmedabad-380001.<br>
+    GSTIN/UIN : 24DZPP1923D1ZD &nbsp;|&nbsp; E-Mail : saadpaliwala@gmail.com<br>
+    Mobile : 93762 40349, 72268 05708, 72268 05707</p>
+  </div>
+
+  <div class="meta">
+    <div class="fld"><label>DATE</label><input type="text" id="bD" class="vf"></div>
+    <div class="fld"><label>BILL NO.</label><input type="text" id="bN" class="vf" value="001" oninput="localStorage.setItem('ik_b',this.value)"></div>
+    <div class="fld pbox"><label>PARTY NAME</label><input type="text" id="pN" class="vf" placeholder="Party / Customer ka naam"></div>
+    <div class="fld addr-row"><label>PARTY ADDRESS</label><input type="text" id="pA" class="vf" placeholder="Party / Customer ka address likhein"></div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:7%">No.</th>
+        <th style="width:41%;text-align:left;padding-left:6px">Product</th>
+        <th style="width:22%">Quantity</th>
+        <th style="width:12%">Rate</th>
+        <th style="width:18%">Amount</th>
+      </tr>
+    </thead>
+    <tbody id="ls"></tbody>
+    <tfoot>
+      <tr><td colspan="4" class="r">Sub Total</td><td class="amt" id="subT">0.00</td></tr>
+      <tr><td colspan="4" class="r">GST (Optional) : <input type="number" id="gstP" class="gst-inp" placeholder="0" step="any" oninput="calc()"> %</td><td class="amt" id="gstA">0.00</td></tr>
+      <tr class="tot-row" id="totRow"><td colspan="3" style="font-size:12px">E. &amp; O.E</td><td class="r">Total</td><td class="tot" id="gT">0.00</td></tr>
+    </tfoot>
+  </table>
+
+  <div class="words-box">Amount Chargeable (in words) : <b id="amtWords">Zero Rupees Only</b></div>
+  <div class="inv-foot">
+    <div class="decl"><u><b>Declaration :</b></u><br>We declare that this invoice shows the actual price of the goods described and that all particulars are true and correct.</div>
+    <div class="sign">for, IBUCHACHA KIRAN STORES<div class="sign-space"></div>Authorised Signatory</div>
+  </div>
+  <div class="comp-gen">This is a Computer Generated Invoice</div>
+  <button type="button" class="btm" onclick="addR(1)">+ Add More Item</button>
+</div>
+<script>
+if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){
+  navigator.serviceWorker.register('sw.js').catch(function(){});
+}
+
+var act=null,rec=null,on=0,autoMv=1,d=new Date();
+document.getElementById('bD').value=String(d.getDate()).padStart(2,'0')+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+d.getFullYear();
+if(localStorage.getItem('ik_b'))document.getElementById('bN').value=localStorage.getItem('ik_b');
+document.addEventListener('focusin',function(e){if(e.target.classList.contains('vf')){document.querySelectorAll('.vf').forEach(function(x){x.classList.remove('act')});act=e.target;act.classList.add('act')}});
+
+function tAuto(){
+  autoMv=autoMv?0:1;
+  var b=document.getElementById('autoBtn');
+  if(autoMv){b.classList.add('on');b.innerText='⚡ Auto-Move: ON';}
+  else{b.classList.remove('on');b.innerText='⚡ Auto-Move: OFF';}
+}
+
+function numToWords(num){
+  num=Math.round(num);if(num===0)return 'Zero Rupees Only';
+  var a=['','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen'];
+  var b=['','','Twenty','Thirty','Forty','Fifty','Sixty','Seventy','Eighty','Ninety'];
+  function inW(n){
+    if(n<20)return a[n];
+    if(n<100)return b[Math.floor(n/10)]+(n%10?' '+a[n%10]:'');
+    if(n<1000)return a[Math.floor(n/100)]+' Hundred'+(n%100?' '+inW(n%100):'');
+    if(n<100000)return inW(Math.floor(n/1000))+' Thousand'+(n%1000?' '+inW(n%1000):'');
+    if(n<10000000)return inW(Math.floor(n/100000))+' Lakh'+(n%100000?' '+inW(n%100000):'');
+    return inW(Math.floor(n/10000000))+' Crore'+(n%10000000?' '+inW(n%10000000):'');
+  }
+  return 'INR '+inW(num)+' Only';
+}
+
+function calc(){
+  var sub=0,r=document.getElementById('ls').rows;
+  for(var i=0;i<r.length;i++){
+    var rw=r[i],q=parseFloat(rw.querySelector('.qt').value)||0,u=rw.querySelector('.un').value,rt=parseFloat(rw.querySelector('.rt').value)||0;
+    var a=(u==='gm')?(q/1000)*rt:(q*rt);
+    rw.querySelector('.amt').innerText=a.toFixed(2);sub+=a;
+  }
+  var gp=parseFloat(document.getElementById('gstP').value)||0,ga=(sub*gp)/100,grand=sub+ga;
+  document.getElementById('subT').innerText=sub.toFixed(2);
+  document.getElementById('gstA').innerText=ga.toFixed(2);
+  document.getElementById('gT').innerText=grand.toFixed(2);
+  document.getElementById('amtWords').innerText=numToWords(grand);
+}
+
+function addR(f){
+  var tb=document.getElementById('ls'),n=tb.rows.length+1,tr=tb.insertRow(-1);
+  tr.innerHTML='<td class="c"><b>'+n+'</b><button type="button" class="del" onclick="delR(this)">×</button></td><td><input type="text" class="vf pr" placeholder="Item"></td><td><div class="qb"><input type="number" class="vf qt" placeholder="0" step="any" oninput="calc()"><select class="us un" onchange="calc()"><option value="gm">gm</option><option value="kg" selected>kg</option><option value="ltr">ltr</option><option value="pis">pis</option><option value="darzan">darzan</option><option value="peti">peti</option></select></div></td><td><input type="number" class="vf r rt" placeholder="0" step="any" oninput="calc()"></td><td class="amt">0.00</td>';
+  if(f){var inp=tr.querySelector('.pr');inp.focus();tr.scrollIntoView({behavior:'smooth',block:'center'});}
+}
+
+function goRow(num){
+  var tb=document.getElementById('ls');
+  while(tb.rows.length<num){addR(0);}
+  var rw=tb.rows[num-1];
+  var inp=rw.querySelector('.pr');
+  inp.focus();
+  rw.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function delR(b){var tb=document.getElementById('ls');if(tb.rows.length>1){b.closest('tr').remove();for(var i=0;i<tb.rows.length;i++)tb.rows[i].querySelector('b').innerText=i+1;calc();}}
+function mv(s){var fs=document.querySelectorAll('.vf'),i=-1;for(var k=0;k<fs.length;k++)if(fs[k]===act)i=k;if(s===1&&i===fs.length-1){addR(1);return;}var nx=(i+s+fs.length)%fs.length,el=fs[nx];el.focus();if(el.select)el.select();}
+function nB(){var b=document.getElementById('bN'),n=parseInt(b.value,10);if(!isNaN(n)){b.value=String(n+1).padStart(b.value.length,'0');localStorage.setItem('ik_b',b.value);}document.getElementById('pN').value='';document.getElementById('pA').value='';document.getElementById('gstP').value='';document.getElementById('ls').innerHTML='';for(var i=0;i<5;i++)addR(0);calc();document.getElementById('pN').focus();}
+
+function getN(t){
+  var mp={'૦':'0','૧':'1','૨':'2','૩':'3','૪':'4','૫':'5','૬':'6','૭':'7','૮':'8','૯':'9','०':'0','१':'1','२':'2','३':'3','४':'4','५':'5','६':'6','७':'7','८':'8','९':'9'};
+  var c=t.replace(/[૦-૯०-९]/g,function(x){return mp[x]}),num=c.replace(/[^0-9.]/g,'');
+  if(num!=='')return num;
+  var w={'હજાર':'1000','thousand':'1000','પાંચસો':'500','five hundred':'500','અઢીસો':'250','બસો':'200','સો':'100','hundred':'100','પચાસ':'50','fifty':'50','વીસ':'20','twenty':'20','દસ':'10','ten':'10','નવ':'9','nine':'9','આઠ':'8','eight':'8','સાત':'7','seven':'7','છ':'6','six':'6','પાંચ':'5','five':'5','ચાર':'4','four':'4','ત્રણ':'3','three':'3','બે':'2','two':'2','એક':'1','one':'1','વન':'1','ટુ':'2','થ્રી':'3','ફોર':'4','ફાઈવ':'5'};
+  for(var k in w)if(c.toLowerCase().indexOf(k)!==-1)return w[k];
+  return '';
+}
+
+function setU(t,inp){
+  var tr=inp.closest('tr');if(!tr)return;
+  var s=tr.querySelector('.un'),l=t.toLowerCase();
+  if(/gram|gm|ગ્રામ|ग्राम/.test(l))s.value='gm';
+  else if(/kilo|kg|કિલો|किलो/.test(l))s.value='kg';
+  else if(/liter|litre|ltr|લિટર|लीटर/.test(l))s.value='ltr';
+  else if(/piece|pic|pis|pcs|પીસ|નંગ|पीस/.test(l))s.value='pis';
+  else if(/darzan|dozen|ડઝન|दर्जन/.test(l))s.value='darzan';
+  else if(/peti|box|પેટી|पेटी/.test(l))s.value='peti';
+}
+
+function tV(){
+  var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){document.getElementById('st').innerText='❌ Chrome use karein';return;}
+  if(on){on=0;rec.stop();return;}
+  if(!act){act=document.getElementById('pN');act.focus();}
+  rec=new SR();rec.lang=document.getElementById('vL').value;rec.continuous=true;rec.interimResults=false;
+  rec.onstart=function(){on=1;var b=document.getElementById('mBtn');b.classList.add('on');b.innerText='🛑 Stop';document.getElementById('st').innerText='🟢 ગુજરાતીમાં બોલો...';};
+  rec.onresult=function(e){
+    var res=e.results.item(e.results.length-1);
+    var tx=res.item(0).transcript.trim(),l=tx.toLowerCase().replace(/[.,!?।]/g,'').trim();
+    document.getElementById('st').innerText='🗣 સાંભળ્યું: "'+tx+'"';
+
+    if(/^(number|no|નંબર|नंबर)\s*/.test(l)){
+      var rn=parseInt(getN(tx),10);
+      if(rn>0){goRow(rn);return;}
+    }
+    if(['total','ટોટલ','कुल','टोटल'].indexOf(l)!==-1){
+      calc();
+      var tr=document.getElementById('totRow');
+      tr.scrollIntoView({behavior:'smooth',block:'center'});
+      document.getElementById('st').innerText='💰 કુલ બિલ Total: ₹ '+document.getElementById('gT').innerText;
+      return;
+    }
+    if(['next','agla','aagal','આગળ','નેક્સ્ટ','अगला'].indexOf(l)!==-1){mv(1);return;}
+    if(['back','pichla','pachhal','પાછળ','બેક','पिछला'].indexOf(l)!==-1){mv(-1);return;}
+    if(['add','add item','new item','add row','એડ','નવી આઈટમ','આઈટમ ઉમેરો','ऐड'].indexOf(l)!==-1){addR(1);return;}
+    if(['new bill','નવું બિલ','नया बिल'].indexOf(l)!==-1){nB();return;}
+    if(['print','પ્રિન્ટ','प्रिंट'].indexOf(l)!==-1){window.print();return;}
+
+    if(act){
+      if(act.type==='number'){
+        var n=getN(tx);
+        if(n!=='')act.value=n;
+        if(act.classList.contains('qt'))setU(tx,act);
+        calc();
+        if(autoMv && n!=='')mv(1);
+      } else {
+        act.value=tx;
+        calc();
+        if(autoMv)mv(1);
+      }
+    }
+  };
+  rec.onerror=function(e){document.getElementById('st').innerText='⚠️ Mic Error: '+e.error;if(e.error==='not-allowed'||e.error==='audio-capture')on=0;};
+  rec.onend=function(){if(on){try{rec.start();}catch(x){}}else{var b=document.getElementById('mBtn');b.classList.remove('on');b.innerText='🎤 Start Voice';document.getElementById('st').innerText='🎙 Voice Stopped';}};
+  rec.start();
+}
+for(var i=0;i<5;i++)addR(0);
+</script>
+</body>
+</html>
