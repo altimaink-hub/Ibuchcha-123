@@ -1,0 +1,17 @@
+{
+  "name": "IBUCHACHA KIRANA STORE",
+  "short_name": "Ibuchacha Bill",
+  "start_url": "/Ibuchcha-123/",
+  "scope": "/Ibuchcha-123/",
+  "display": "standalone",
+  "background_color": "#f1f5f9",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "https://flaticon.com",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
